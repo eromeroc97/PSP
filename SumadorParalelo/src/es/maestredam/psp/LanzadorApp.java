@@ -15,7 +15,7 @@ public class LanzadorApp {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException{
         final int MINIMO = 1;
         final int MAXIMO = 10000;
         final int NUM_HILOS = 4;
@@ -32,7 +32,14 @@ public class LanzadorApp {
             sumadores[i] = new Sumador(limInferior,limSuperior);
             hilos[i] = new Thread(sumadores[i]);
             hilos[i].start();
+            hilos[i].join(); //ESTO TAMPOCO
         }
+        //ESTO AUN NO
+        int res=0;
+        for(int i = 0; i < NUM_HILOS; i++){
+            res += sumadores[i].getResultado();
+        }
+        System.out.println("Resultado: "+res);
     }
 
 }

@@ -12,8 +12,8 @@ package es.maestredam.psp;
  */
 public class Sumador implements Runnable{
     
-    private int limiteInferior;
-    private int limiteSuperior;
+    private final int limiteInferior;
+    private final int limiteSuperior;
     private int resultado;
     
     public Sumador(int limiteInferior, int limitesuperior) {
