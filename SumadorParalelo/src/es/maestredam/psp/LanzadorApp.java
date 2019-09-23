@@ -26,15 +26,21 @@ public class LanzadorApp {
         
         Thread[] hilos = new Thread[NUM_HILOS];
         
+        //Lanzando los hilos
         for(int i = 0; i < NUM_HILOS;i++){
             int limSuperior = (i+1)*rango;
-            int limInferior = limSuperior-rango;
+            int limInferior = 1+(limSuperior-rango);
+            System.out.printf("%d hasta %d %n",limInferior, limSuperior);
             sumadores[i] = new Sumador(limInferior,limSuperior);
             hilos[i] = new Thread(sumadores[i]);
             hilos[i].start();
-            hilos[i].join(); //ESTO TAMPOCO
+            
         }
-        //ESTO AUN NO
+        
+        //Metodo de espera
+        for(int i = 0; i < NUM_HILOS;i++)
+            hilos[i].join();
+        
         int res=0;
         for(int i = 0; i < NUM_HILOS; i++){
             res += sumadores[i].getResultado();
