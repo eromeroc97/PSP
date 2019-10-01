@@ -21,7 +21,11 @@ public class Empleado {
         return horas;
     }
     
-    public synchronized void actualizarHoras(int horas){
-        this.horas = this.horas + horas;
+    public void actualizarHoras(int horas){
+        
+        synchronized(this){
+            this.horas = this.horas + horas;
+        }
+        
     }
 }
