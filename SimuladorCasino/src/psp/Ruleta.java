@@ -55,10 +55,12 @@ public class Ruleta implements Runnable{
         if(a.getApuesta().getNumero() == this.extraido){
             banca.movimiento(-a.getApuesta().getCantidad()*36);
             a.setDinero(a.getDinero() + (a.getApuesta().getCantidad() * 36)); //multiplica por 36 lo ganado
-            if(a.getMartingala())
-                a.setUltimaApuesta(a.getUltimaApuesta() / 2); //si acierta no duplica
             
             System.out.println("#### "+a.getNombre()+": He ganado");
+        }
+        
+        if(a.getMartingala()){
+            a.setUltimaApuesta(a.getUltimaApuesta() * 2);
         }
     }
     
@@ -67,9 +69,7 @@ public class Ruleta implements Runnable{
         if(a.getDinero() >= a.getUltimaApuesta()){
             apuesta = new Apuesta(a.getUltimaApuesta());
             a.setDinero(a.getDinero() - apuesta.getCantidad());
-            if(a.getMartingala()){
-                a.setUltimaApuesta(a.getUltimaApuesta() * 2);
-            }
+            
             System.out.println(a.getNombre()+": Apuesto "+apuesta.getCantidad()+" al numero "+apuesta.getNumero()+" (DINERO: "+a.getDinero()+" )");
             banca.movimiento(apuesta.getCantidad());
             a.setApuesta(apuesta);
@@ -95,9 +95,6 @@ public class Ruleta implements Runnable{
             cambiarEstadoComprobacion(); //comprobacion a true
             esperar();
             cambiarEstadoComprobacion(); //comprobacion a false
-            
-            
-            
         }
     }
 

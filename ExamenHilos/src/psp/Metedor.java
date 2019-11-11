@@ -23,7 +23,7 @@ public class Metedor implements Runnable{
     @Override
     public void run() {
         while(true){
-            int num = generadorAleatorio.nextInt(49)+1;
+            int num = generadorAleatorio.nextInt(50)+1;
             while(shared.encolar(num) == false)
                 esperaAzar(200, 500);
             

@@ -45,8 +45,7 @@ public class SimuladorCasino {
             hilosApostadores[i].join();
         }
         
-        hiloRuleta.join();
-        
+        hiloRuleta.interrupt();
     }
     
 }

@@ -33,7 +33,7 @@ public class Cliente implements Runnable{
         for(int intento = 1; intento <= MAX_INTENTOS; intento++){
             if(!puerta.estaOcupada()){
                 if(puerta.intentarEntrar()){
-                    esperar();
+                    esperar(600);
                     puerta.liberarPuerta();
                     if(productos.cogerProducto()){
                         System.out.println(this.nombre+": Cogí un producto! (Intento: "+intento+")");
@@ -44,15 +44,15 @@ public class Cliente implements Runnable{
                     }
                 }
             }else{
-                esperar();
+                esperar(2000);
             }
         }
         System.out.println(this.nombre+": lo intenté muchas veces y no pude");
     }
     
-    public void esperar(){
+    public void esperar(int ms){
         try {
-            int ms_azar = generador.nextInt(2000);
+            int ms_azar = generador.nextInt(ms);
             Thread.sleep(ms_azar);
         } catch (InterruptedException ex) {
             System.out.println("Fallo en la espera");

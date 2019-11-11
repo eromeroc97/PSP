@@ -104,6 +104,8 @@ public class Apostador implements Runnable{
         }
         if(dinero == 0)
             System.out.println(nombre+": Me he quedado sin blanca!!!!");
+        
+        System.out.println("FIN#################");
     }
     
 }
