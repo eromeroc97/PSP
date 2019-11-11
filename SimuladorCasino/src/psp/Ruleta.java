@@ -71,7 +71,7 @@ public class Ruleta implements Runnable{
             a.setApuesta(apuesta);
             return true;
         }else{
-            System.out.println(a.getNombre()+": no puedo apostar");
+            System.out.println(a.getNombre()+": no puedo apostar (DINERO: "+a.getDinero()+" )");
             return false;
         }
     }
@@ -79,7 +79,7 @@ public class Ruleta implements Runnable{
     @Override
     public void run(){
         while(banca.getDinero() > 0){
-            System.out.println("Dinero Banca: "+banca.getDinero());
+            System.out.println("Dinero Banca (PREVIO): "+banca.getDinero());
             //las apuestas estan activas
             esperar();
             cambiarEstadoApuestas();//apuestas a false
@@ -87,7 +87,6 @@ public class Ruleta implements Runnable{
             cambiarEstadoComprobacion(); //comprobacion a true
             esperar();
             cambiarEstadoComprobacion(); //comprobacion a false
-            
             
             cambiarEstadoApuestas(); //apuestas a true
             
