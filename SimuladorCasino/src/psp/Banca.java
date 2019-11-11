@@ -27,7 +27,7 @@ public class Banca {
             return aux;
         }
         
-        dinero = dinero - cantidad;
+        dinero = dinero + cantidad;
         return cantidad;
     }
 }

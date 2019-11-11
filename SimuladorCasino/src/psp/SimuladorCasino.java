@@ -16,10 +16,10 @@ public class SimuladorCasino {
      */
     public static void main(String[] args) throws InterruptedException {  
         
-        final int APOSTADORES = 4;
-        final int APOSTADORES_MARTINGALA = 2;
+        final int APOSTADORES = 0;
+        final int APOSTADORES_MARTINGALA = 4;
         
-        Banca banca = new Banca(50000);
+        Banca banca = new Banca(5000);
         Ruleta ruleta = new Ruleta(banca);
         Apostador[] apostadores = new Apostador[APOSTADORES + APOSTADORES_MARTINGALA];
         

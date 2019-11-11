@@ -20,7 +20,7 @@ public class Ruleta implements Runnable{
 
     public Ruleta(Banca banca) {
         this.banca = banca;
-        this.apuestasActivas = true;
+        this.apuestasActivas = false;
         this.comprobarApuestas = false;
         this.extraido = -1;
     }
@@ -53,8 +53,12 @@ public class Ruleta implements Runnable{
     
     public synchronized void comprobar(Apostador a){
         if(a.getApuesta().getNumero() == this.extraido){
-            banca.movimiento(a.getApuesta().getCantidad());
-            a.setDinero(a.getDinero() + a.getApuesta().getCantidad());
+            banca.movimiento(-a.getApuesta().getCantidad()*36);
+            a.setDinero(a.getDinero() + (a.getApuesta().getCantidad() * 36)); //multiplica por 36 lo ganado
+            if(a.getMartingala())
+                a.setUltimaApuesta(a.getUltimaApuesta() / 2); //si acierta no duplica
+            
+            System.out.println("#### "+a.getNombre()+": He ganado");
         }
     }
     
@@ -66,12 +70,13 @@ public class Ruleta implements Runnable{
             if(a.getMartingala()){
                 a.setUltimaApuesta(a.getUltimaApuesta() * 2);
             }
-            System.out.println(a.getNombre()+": Apuesto "+apuesta.getCantidad()+" al numero "+apuesta.getNumero());
+            System.out.println(a.getNombre()+": Apuesto "+apuesta.getCantidad()+" al numero "+apuesta.getNumero()+" (DINERO: "+a.getDinero()+" )");
             banca.movimiento(apuesta.getCantidad());
             a.setApuesta(apuesta);
             return true;
         }else{
             System.out.println(a.getNombre()+": no puedo apostar (DINERO: "+a.getDinero()+" )");
+            a.setApuesta(new Apuesta(0));
             return false;
         }
     }
@@ -79,16 +84,19 @@ public class Ruleta implements Runnable{
     @Override
     public void run(){
         while(banca.getDinero() > 0){
-            System.out.println("Dinero Banca (PREVIO): "+banca.getDinero());
-            //las apuestas estan activas
+            System.out.printf("\n\nDinero Banca (PREVIO): %d\n",banca.getDinero());
+            
+            cambiarEstadoApuestas(); //apuestas a true
             esperar();
             cambiarEstadoApuestas();//apuestas a false
+            
             extraer();
+            
             cambiarEstadoComprobacion(); //comprobacion a true
             esperar();
             cambiarEstadoComprobacion(); //comprobacion a false
             
-            cambiarEstadoApuestas(); //apuestas a true
+            
             
         }
     }

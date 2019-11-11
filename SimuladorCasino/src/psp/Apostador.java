@@ -83,8 +83,11 @@ public class Apostador implements Runnable{
     
     @Override
     public void run(){
-        while(dinero > 0){
+        boolean continuar = true;
+        int valorComprobacion = ultimaApuesta;
+        while(dinero > 0 && continuar){
             if(ruleta.getApuestasActivas()){
+                valorComprobacion = ultimaApuesta;
                 ruleta.apostar(this);
             }
             
@@ -93,8 +96,14 @@ public class Apostador implements Runnable{
             if(ruleta.getComprobarApuestas()){
                 ruleta.comprobar(this);
             }
+            
+            if(martingala && dinero < valorComprobacion){
+                continuar = false;
+            }
            
         }
+        if(dinero == 0)
+            System.out.println(nombre+": Me he quedado sin blanca!!!!");
     }
     
 }
