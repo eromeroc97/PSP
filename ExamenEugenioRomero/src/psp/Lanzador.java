@@ -16,7 +16,7 @@ public class Lanzador {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws InterruptedException {
-        final int NUM_ESCRITORES = 1000;
+        final int NUM_ESCRITORES = 50;
         final int TAMANO_MEMORIA = 5;
         
         MemoriaCompartida memoria = new MemoriaCompartida(TAMANO_MEMORIA);
