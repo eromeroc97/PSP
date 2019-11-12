@@ -21,11 +21,11 @@ public class MemoriaCompartida {
         this.ocupadas = new boolean[TAMANO_MEMORIA];
     }
     
-    public synchronized int leer(int posicion){
+    public int leer(int posicion){
         return memoria[posicion];
     }
     
-    public synchronized void liberar(int posicion){
+    public void liberar(int posicion){
         ocupadas[posicion] = false;
     }
     

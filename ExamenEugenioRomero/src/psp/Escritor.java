@@ -38,6 +38,7 @@ public class Escritor implements Runnable{
                 System.out.println(nombre+" valor leido: "+numeroLeido+" -> Correcto: "+(numeroLeido == numeroEscribir));
                 memoria.liberar(posicionEscrita);
             }
+            intento++;
         }
     }
     
