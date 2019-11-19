@@ -1,5 +1,5 @@
 
-package com.iesmaestre.servidordiccionario;
+package com.iesmaestre.psp.chat;
 
 import java.io.BufferedReader;
 import java.io.Console;
@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.Scanner;
 
 
 public class Cliente {
@@ -28,10 +29,15 @@ public class Cliente {
                   conexion.getInputStream()
             );
         
-        Console consola = System.console();
-        String lineaLeida=consola.readLine();
+        Scanner Teclado = new Scanner(System.in);
+        System.out.print("> ");
+        String lineaLeida=Teclado.nextLine();
         while (!lineaLeida.equals("/fin")){
-            
+            Mensaje msg = new Mensaje(lineaLeida);
+            pw.println(lineaLeida);
+            pw.flush();
+            System.out.print("> ");
+            lineaLeida=Teclado.nextLine();
         }
     }
     

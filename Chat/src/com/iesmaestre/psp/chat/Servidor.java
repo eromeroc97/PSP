@@ -1,5 +1,5 @@
 
-package com.iesmaestre.servidordiccionario;
+package com.iesmaestre.psp.chat;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,8 +28,7 @@ public class Servidor {
             socketConCliente=socketServidor.accept();
             Peticion p=new Peticion(socketConCliente);
             Thread hiloAsociado=new Thread(p);
-            hiloAsociado.start();
-            
+            hiloAsociado.start();            
         }
     }
     public static void main(String[] args) throws IOException{

@@ -1,4 +1,4 @@
-package com.iesmaestre.servidordiccionario;
+package com.iesmaestre.psp.chat;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

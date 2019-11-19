@@ -1,5 +1,5 @@
 
-package com.iesmaestre.servidordiccionario;
+package com.iesmaestre.psp.chat;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,8 +8,6 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 public class Peticion implements Runnable{
@@ -56,7 +54,7 @@ public class Peticion implements Runnable{
                 this.cadenas.add(linea);
             }
         }catch (IOException e){
-            System.out.println("Error en lectura"
+            System.out.println("Error en lectura "
                     + "de parametros del cliente");
             this.parametrosLeidos=false;
             return ;

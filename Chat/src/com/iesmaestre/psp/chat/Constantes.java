@@ -1,5 +1,5 @@
 
-package com.iesmaestre.servidordiccionario;
+package com.iesmaestre.psp.chat;
 
 
 public class Constantes {
